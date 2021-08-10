@@ -3,13 +3,13 @@ import { applyMiddleware, combineReducers, compose, createStore } from 'redux'
 import { persistReducer, persistStore } from 'redux-persist'
 import storage from 'redux-persist/lib/storage'
 import thunk from 'redux-thunk'
-import { AppState } from './types'
+import { AppStates } from './types'
 
 // 永続化
 const persistConfig = {
   key: 'root', // Storageに保存されるキー名を指定する
   storage, // 保存先としてlocalStorageがここで設定される
-  whitelist: ['info'], // Stateは`info`のみStorageに保存する
+  whitelist: ['info', 'isLogin'], // Stateは`info`のみStorageに保存する
 }
 
 // Redux 拡張機能
@@ -24,12 +24,15 @@ const composeReduxDevToolsEnhancers =
 // store 作成
 const createAppStore = () => {
   return createStore(
-    persistReducer(
-      persistConfig,
-      combineReducers<AppState>({
-        user: UsersReducer,
-      })
-    ),
+    // persistReducer(
+    //   persistConfig,
+    //   combineReducers<AppStates>({
+    //     user: UsersReducer,
+    //   })
+    // ),
+    combineReducers<AppStates>({
+      user: persistReducer(persistConfig, UsersReducer),
+    }),
     composeReduxDevToolsEnhancers(applyMiddleware(thunk))
   )
 }

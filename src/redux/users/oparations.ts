@@ -2,16 +2,15 @@ import { auth, firestore, provider } from '@/utils/firebase'
 import Router from 'next/router'
 import { Dispatch } from 'redux'
 import { signinAction } from './actions'
-import { Actions, User } from './types'
-import { AppState } from '../types'
+import { Actions, UserInfo, UserState } from './types'
 
 export const siginIn = () => {
-  return async (dispatch: Dispatch<Actions>, getState: () => AppState): Promise<void> => {
+  return async (dispatch: Dispatch<Actions>, getState: () => UserState): Promise<void> => {
     const state = getState()
     if (!state.user.isLogin) {
       try {
         const res: any = await auth.signInWithPopup(provider)
-        const user: User = {
+        const user: UserInfo = {
           uid: res.user.uid,
           displayName: res.user.displayName,
           username: res.additionalUserInfo.username,

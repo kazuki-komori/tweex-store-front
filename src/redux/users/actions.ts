@@ -1,13 +1,15 @@
-import { User } from './types'
+import { UserInfo } from './types'
 
 export const SIGN_IN = 'SIGN_IN'
 
-export const signinAction = (user: User) => {
+export const signinAction = (user: UserInfo) => {
   return {
     type: SIGN_IN,
-    payload: {
-      isLogin: true,
-      info: { ...user },
+    user: {
+      payload: {
+        isLogin: true,
+        info: { ...user },
+      },
     },
   }
 }

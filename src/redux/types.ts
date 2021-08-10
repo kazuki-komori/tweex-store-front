@@ -1,8 +1,6 @@
-import { User } from './users/types'
+import { Reducer } from 'redux'
+import { UserInfo, UserState } from './users/types'
 
-export interface AppState {
-  user: {
-    isLogin: boolean
-    info: User
-  }
+export interface AppStates {
+  user: any
 }
