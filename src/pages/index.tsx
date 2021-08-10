@@ -1,23 +1,27 @@
-import { getCounter } from '@/redux/users/selectors'
+import { siginIn } from '@/redux/users/oparations'
+import { getUser } from '@/redux/users/selectors'
 import { Button } from '@chakra-ui/button'
 import { useDispatch, useSelector } from 'react-redux'
-import { signinAction } from '../redux/users/actions'
 
 export const Home = () => {
   const selector = useSelector((state) => state)
-  const counter = getCounter(selector)
+  const user = getUser(selector)
   const dispatch = useDispatch()
 
   return (
     <div>
-      <p>{counter}</p>
-      <Button
-        onClick={() => {
-          dispatch(signinAction())
-        }}
-      >
-        +1
-      </Button>
+      <div>
+        <Button
+          colorScheme="twitter"
+          variant="solid"
+          onClick={() => {
+            dispatch(siginIn())
+          }}
+        >
+          Twitter でログイン
+        </Button>
+        <p>{JSON.stringify(user)}</p>
+      </div>
     </div>
   )
 }

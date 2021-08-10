@@ -5,19 +5,20 @@ import { theme } from '@/styles/chakra-theme'
 import { AppHeader } from '@/components/layout/AppHeader'
 import { Provider } from 'react-redux'
 import { Box } from '@chakra-ui/layout'
-import { createUsersStore } from '@/redux/users/index'
-
-export const store = createUsersStore()
+import { persistor, store } from '@/redux/store'
+import { PersistGate } from 'redux-persist/integration/react'
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
     <Provider store={store}>
-      <ChakraProvider theme={theme}>
-        <AppHeader />
-        <Box mx={20}>
-          <Component {...pageProps} />
-        </Box>
-      </ChakraProvider>
+      <PersistGate loading={null} persistor={persistor}>
+        <ChakraProvider theme={theme}>
+          <AppHeader />
+          <Box mx={20}>
+            <Component {...pageProps} />
+          </Box>
+        </ChakraProvider>
+      </PersistGate>
     </Provider>
   )
 }

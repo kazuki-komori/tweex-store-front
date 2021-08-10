@@ -6,6 +6,6 @@ export const theme = extendTheme({
     'main-purple': '#6B64D1',
   },
   fonts: {
-    body: 'Osaka, "Open Sans", sans-serif',
+    body: 'Avenir, "Hiragino Sans", "ヒラギノ角ゴ ProN W3", "Hiragino Kaku Gothic ProN", "Segoe UI", メイリオ, Meiryo, sans-serif',
   },
 })
