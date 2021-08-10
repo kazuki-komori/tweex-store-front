@@ -21,10 +21,10 @@ export const siginIn = () => {
           .set({ ...user })
 
         dispatch(signinAction(user))
-        Router.push('/mypage')
       } catch (e) {
         console.log(e)
       }
     }
+    Router.push('/home')
   }
 }

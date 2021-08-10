@@ -1,12 +1,12 @@
-import '../styles/globals.css'
-import type { AppProps } from 'next/app'
-import { ChakraProvider } from '@chakra-ui/react'
-import { theme } from '@/styles/chakra-theme'
 import { AppHeader } from '@/components/layout/AppHeader'
-import { Provider } from 'react-redux'
-import { Box } from '@chakra-ui/layout'
 import { persistor, store } from '@/redux/store'
+import { theme } from '@/styles/chakra-theme'
+import { Box } from '@chakra-ui/layout'
+import { ChakraProvider } from '@chakra-ui/react'
+import type { AppProps } from 'next/app'
+import { Provider } from 'react-redux'
 import { PersistGate } from 'redux-persist/integration/react'
+import '../styles/globals.css'
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
@@ -14,7 +14,7 @@ function MyApp({ Component, pageProps }: AppProps) {
       <PersistGate loading={null} persistor={persistor}>
         <ChakraProvider theme={theme}>
           <AppHeader />
-          <Box mx={20}>
+          <Box mx={[8, 20, 150]}>
             <Component {...pageProps} />
           </Box>
         </ChakraProvider>
