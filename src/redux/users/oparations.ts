@@ -2,7 +2,8 @@ import { auth, firestore, provider } from '@/utils/firebase'
 import Router from 'next/router'
 import { Dispatch } from 'redux'
 import { signinAction } from './actions'
-import { Actions, AppState, User } from './types'
+import { Actions, User } from './types'
+import { AppState } from '../types'
 
 export const siginIn = () => {
   return async (dispatch: Dispatch<Actions>, getState: () => AppState): Promise<void> => {

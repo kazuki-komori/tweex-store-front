@@ -7,10 +7,3 @@ export type User = {
 }
 
 export type Actions = ReturnType<typeof signinAction>
-
-export interface AppState {
-  user: {
-    isLogin: boolean
-    info: User
-  }
-}
