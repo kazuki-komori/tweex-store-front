@@ -6,8 +6,6 @@ let info: UserInfo = {
   displayName: '',
 }
 
-console.log(info)
-
 export const intialState = {
   isLogin: false,
   info,
