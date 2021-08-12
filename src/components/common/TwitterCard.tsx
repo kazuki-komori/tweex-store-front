@@ -1,7 +1,7 @@
 import { Img } from '@chakra-ui/image'
 import { AspectRatio, Box, Grid, GridItem } from '@chakra-ui/layout'
 import { HStack, Text, useDisclosure } from '@chakra-ui/react'
-import React from 'react'
+import React, { useState } from 'react'
 import { ImgPrevieModal } from './ImgPreviewModal'
 
 interface Props {
@@ -12,8 +12,13 @@ interface Props {
 
 export const TwitterCard: React.VFC<Props> = (props) => {
   const { isOpen, onOpen, onClose } = useDisclosure()
+  const [modalImage, setImage] = useState('')
   // 画像の配置操作
   const columns = props.images.length % 2 === 0 ? 'repeat(2, 1fr)' : 'repeat(1, 1fr)'
+  const onModalOpen = (img: string) => {
+    setImage(img)
+    onOpen()
+  }
   return (
     <Box as="div" boxShadow="sm" maxW="lg" borderWidth="1px" rounded="md">
       <Grid gap={[2]} p={[3]} templateColumns={['repeat(6, 1fr)', 'repeat(8, 1fr)']}>
@@ -50,7 +55,7 @@ export const TwitterCard: React.VFC<Props> = (props) => {
                         <Img
                           src={props.images[0]}
                           alt="ツイートの画像"
-                          onClick={onOpen}
+                          onClick={() => onModalOpen(props.images[0])}
                           objectFit="cover"
                           rounded={['md', 'sm']}
                           opacity={0.9}
@@ -63,7 +68,7 @@ export const TwitterCard: React.VFC<Props> = (props) => {
                         <Img
                           src={props.images[1]}
                           alt="ツイートの画像"
-                          onClick={onOpen}
+                          onClick={() => onModalOpen(props.images[1])}
                           objectFit="cover"
                           rounded={['md', 'sm']}
                           opacity={0.9}
@@ -76,7 +81,7 @@ export const TwitterCard: React.VFC<Props> = (props) => {
                         <Img
                           src={props.images[2]}
                           alt="ツイートの画像"
-                          onClick={onOpen}
+                          onClick={() => onModalOpen(props.images[2])}
                           objectFit="cover"
                           rounded={['md', 'sm']}
                           opacity={0.9}
@@ -94,7 +99,7 @@ export const TwitterCard: React.VFC<Props> = (props) => {
                         <Img
                           src={image}
                           alt="ツイートの画像"
-                          onClick={onOpen}
+                          onClick={() => onModalOpen(image)}
                           objectFit="cover"
                           rounded={['md', 'sm']}
                           opacity={0.9}
@@ -109,12 +114,7 @@ export const TwitterCard: React.VFC<Props> = (props) => {
           </Box>
         </GridItem>
       </Grid>
-      <ImgPrevieModal
-        isOpen={isOpen}
-        onClose={onClose}
-        onOpen={onOpen}
-        modalImage="https://pbs.twimg.com/media/Ey7mFUcVIAMhhVd.jpg"
-      />
+      <ImgPrevieModal isOpen={isOpen} onClose={onClose} onOpen={onOpen} modalImage={modalImage} />
     </Box>
   )
 }
