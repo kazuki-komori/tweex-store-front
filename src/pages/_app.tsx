@@ -14,7 +14,7 @@ function MyApp({ Component, pageProps }: AppProps) {
       <PersistGate loading={null} persistor={persistor}>
         <ChakraProvider theme={theme}>
           <AppHeader />
-          <Box mx={[8, 20, 150]}>
+          <Box color="main-text-black" mx={[8, 20, 150]}>
             <Component {...pageProps} />
           </Box>
         </ChakraProvider>
